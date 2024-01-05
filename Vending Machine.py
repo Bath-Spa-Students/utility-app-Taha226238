@@ -47,6 +47,26 @@ class VendingMachine:
         print("░░░╚═╝░░░╚══════╝╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚══╝░╚═════╝░  ╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝╚══════╝")
         print("")
         print("")
+        
+        while True:
+            print("")
+            print("\033[93m██████████████████████████████████████████████████████████████████████████████████████")
+            print("\033[93m█▄─▄▄─█▄─▀█▄─▄█─▄─▄─█▄─▄▄─█▄─▄▄▀███─▄─▄─█─█─█▄─▄▄─███▄─▀█▀─▄█─▄▄─█▄─▀█▄─▄█▄─▄▄─█▄─█─▄█")
+            print("\033[93m██─▄█▀██─█▄▀─████─████─▄█▀██─▄─▄█████─███─▄─██─▄█▀████─█▄█─██─██─██─█▄▀─███─▄█▀██▄─▄██")
+            print("\033[93m▀▄▄▄▄▄▀▄▄▄▀▀▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀▄▄▀▄▄▀▀▀▀▄▄▄▀▀▄▀▄▀▄▄▄▄▄▀▀▀▄▄▄▀▄▄▄▀▄▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀")
+            print("")
+            try:
+                amount_paid = float(input("\033[93m\nInsert money into the machine: $"))
+                if amount_paid <= 0:
+                    print("\033[91mPlease insert a valid amount of money.")
+                else:
+                    break
+            except ValueError:
+                print("\033[91mInvalid input. Please enter a valid amount.")
+        print("")
+        print("\n\033[92mMoney inserted successfully!")
+        print("\033[92mYou can now make your selections.")
+
         print("\033[91m█▀ █▄░█ ▄▀█ █▀▀ █▄▀ █▀")
         print("\033[91m▄█ █░▀█ █▀█ █▄▄ █░█ ▄█")
         print("")
@@ -66,37 +86,25 @@ class VendingMachine:
         self.display_menu(self.chocolates_menu, "Pick your item")
         self.make_selection(self.chocolates_menu, self.chocolates_quantity)
         
-        while True:
-            print("")
-            print("\033[93m██████████████████████████████████████████████████████████████████████████████████████")
-            print("\033[93m█▄─▄▄─█▄─▀█▄─▄█─▄─▄─█▄─▄▄─█▄─▄▄▀███─▄─▄─█─█─█▄─▄▄─███▄─▀█▀─▄█─▄▄─█▄─▀█▄─▄█▄─▄▄─█▄─█─▄█")
-            print("\033[93m██─▄█▀██─█▄▀─████─████─▄█▀██─▄─▄█████─███─▄─██─▄█▀████─█▄█─██─██─██─█▄▀─███─▄█▀██▄─▄██")
-            print("\033[93m▀▄▄▄▄▄▀▄▄▄▀▀▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀▄▄▀▄▄▀▀▀▀▄▄▄▀▀▄▀▄▀▄▄▄▄▄▀▀▀▄▄▄▀▄▄▄▀▄▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀")
-            print("")
-            try:
-                print()
-                amount_paid = float(input("\033[93m\nEnter the amount of money you want to insert: $"))
-                break
-            except ValueError:
-                print("Invalid input. Please enter a valid amount.")
+        # Display the total cost and change
+        print("")
+        print("\033[39m█████████████████████████████████████████")
+        print("\033[39m█▄─▄▄▀█▄─▄▄─█─▄▄▄─█▄─▄▄─█▄─▄█▄─▄▄─█─▄─▄─█")
+        print("\033[39m██─▄─▄██─▄█▀█─███▀██─▄█▀██─███─▄▄▄███─███")
+        print("\033[39m▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▀▀▀▀▄▄▄▀▀") 
+        print("")
 
+        print("\n\033[39mTransaction Summary:")
+        print(f"Total Cost: ${self.total_cost:.2f}")
+        print(f"Amount Paid: ${amount_paid:.2f}")
+        
         change = amount_paid - self.total_cost
         if change < 0:
-            print(f"\nInsufficient funds. You need an additional ${abs(change):.2f}.")
+            print(f"\033[91mInsufficient funds. You need an additional ${abs(change):.2f}.")
         else:
-            print("")
-            print("\033[39m█████████████████████████████████████████")
-            print("\033[39m█▄─▄▄▀█▄─▄▄─█─▄▄▄─█▄─▄▄─█▄─▄█▄─▄▄─█─▄─▄─█")
-            print("\033[39m██─▄─▄██─▄█▀█─███▀██─▄█▀██─███─▄▄▄███─███")
-            print("\033[39m▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▀▀▀▀▄▄▄▀▀") 
-            print("")
-
-            print(f"Total Cost: ${self.total_cost:.2f}")
-            print(f"Amount Paid: ${amount_paid:.2f}")
             print(f"Change: ${change:.2f}")
-
-        print(f"\nYour total cost is: ${self.total_cost:.2f}")
-        print("")
+            
+            print("")
         print("")
         print("\033[91m▀█▀ █░█ ▄▀█ █▄░█ █▄▀   █▄█ █▀█ █░█   █▀▀ █▀█ █▀█   █░█ █▀ █ █▄░█ █▀▀   ▀█▀ █░█ █▀▀   █░█ █▀▀ █▄░█ █▀▄ █ █▄░█ █▀▀")
         print("\033[91m░█░ █▀█ █▀█ █░▀█ █░█   ░█░ █▄█ █▄█   █▀░ █▄█ █▀▄   █▄█ ▄█ █ █░▀█ █▄█   ░█░ █▀█ ██▄   ▀▄▀ ██▄ █░▀█ █▄▀ █ █░▀█ █▄█")
@@ -104,6 +112,7 @@ class VendingMachine:
         print("\033[91m█▀▄▀█ ▄▀█ █▀▀ █░█ █ █▄░█ █▀▀ █")
         print("\033[91m█░▀░█ █▀█ █▄▄ █▀█ █ █░▀█ ██▄ ▄")
         print("")
+            
 # Create an instance of the VendingMachine class and start the purchase process
 vending_machine = VendingMachine()
-vending_machine.start_purchase()     
+vending_machine.start_purchase()    
